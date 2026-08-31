@@ -18,6 +18,10 @@ if config.config_file_name is not None:
 from app.core.config import settings
 from app.core.database import Base
 from app.models.user import User  # noqa: F401  (import so Alembic sees the table)
+from app.models.project import Project  # noqa: F401
+from app.models.membership import Membership  # noqa: F401
+from app.models.task import Task  # noqa: F401
+
 
 target_metadata = Base.metadata
 
