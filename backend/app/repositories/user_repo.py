@@ -31,3 +31,15 @@ def create_user(
     db.commit()
     db.refresh(user)
     return user
+
+def get_all_users(db: Session) -> list[User]:
+    """Every user in the system — admin use only."""
+    return db.query(User).order_by(User.id).all()
+
+
+def set_user_active(db: Session, user: User, is_active: bool) -> User:
+    """Activate or deactivate a user account."""
+    user.is_active = is_active
+    db.commit()
+    db.refresh(user)
+    return user

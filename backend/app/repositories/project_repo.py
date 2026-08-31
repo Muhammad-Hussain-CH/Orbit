@@ -58,3 +58,7 @@ def update_project(db: Session, project: Project, name: str | None, description:
 def delete_project(db: Session, project: Project) -> None:
     db.delete(project)
     db.commit()
+
+def get_all_projects(db: Session) -> list[Project]:
+    """Every project in the system — admin use only."""
+    return db.query(Project).order_by(Project.id).all()
