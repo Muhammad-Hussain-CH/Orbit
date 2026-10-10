@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "./api";
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ onOpenProject }) {
   const [projects, setProjects] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -67,9 +67,14 @@ export default function ProjectsPage() {
       ) : (
         <ul>
           {projects.map((p) => (
-            <li key={p.id} style={{ marginBottom: 8 }}>
-              <strong>{p.name}</strong>
-              {p.description && <span style={{ color: "#666" }}> — {p.description}</span>}
+                        <li key={p.id} style={{ marginBottom: 8 }}>
+              <button
+                onClick={() => onOpenProject(p)}
+                style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1em", padding: 0, textAlign: "left" }}
+              >
+                <strong style={{ color: "#2563eb" }}>{p.name}</strong>
+                {p.description && <span style={{ color: "#666" }}> — {p.description}</span>}
+              </button>
             </li>
           ))}
         </ul>

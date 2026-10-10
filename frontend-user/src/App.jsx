@@ -2,12 +2,15 @@ import { useState } from "react";
 import { api } from "./api";
 import LoginPage from "./LoginPage";
 import ProjectsPage from "./ProjectsPage";
+import ProjectDetail from "./ProjectDetail";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(!!api.getToken());
+  const [selectedProject, setSelectedProject] = useState(null);
 
   function handleLogout() {
     api.clearToken();
+    setSelectedProject(null);
     setLoggedIn(false);
   }
 
@@ -21,7 +24,12 @@ export default function App() {
         <h1>Orbit</h1>
         <button onClick={handleLogout}>Log out</button>
       </div>
-      <ProjectsPage />
+
+      {selectedProject ? (
+        <ProjectDetail project={selectedProject} onBack={() => setSelectedProject(null)} />
+      ) : (
+        <ProjectsPage onOpenProject={(p) => setSelectedProject(p)} />
+      )}
     </div>
   );
 }

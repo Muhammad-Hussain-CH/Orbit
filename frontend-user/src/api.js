@@ -49,6 +49,20 @@ export const api = {
       body: JSON.stringify({ name, description }),
     }),
 
+    listTasks: (projectId) => request(`/projects/${projectId}/tasks`),
+
+  createTask: (projectId, title, description) =>
+    request(`/projects/${projectId}/tasks`, {
+      method: "POST",
+      body: JSON.stringify({ title, description }),
+    }),
+
+  updateTaskStatus: (taskId, status) =>
+    request(`/tasks/${taskId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status }),
+    }),
+
   setToken: (token) => localStorage.setItem("orbit_token", token),
   clearToken: () => localStorage.removeItem("orbit_token"),
   getToken,
