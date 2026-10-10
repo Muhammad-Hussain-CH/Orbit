@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "./api";
 import LoginPage from "./LoginPage";
+import ProjectsPage from "./ProjectsPage";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(!!api.getToken());
@@ -20,7 +21,7 @@ export default function App() {
         <h1>Orbit</h1>
         <button onClick={handleLogout}>Log out</button>
       </div>
-      <p>You're logged in. 🎉 Projects coming next.</p>
+      <ProjectsPage />
     </div>
   );
 }

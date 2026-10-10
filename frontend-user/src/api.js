@@ -41,6 +41,14 @@ export const api = {
 
   me: () => request("/auth/me"),
 
+   listProjects: () => request("/projects"),
+
+  createProject: (name, description) =>
+    request("/projects", {
+      method: "POST",
+      body: JSON.stringify({ name, description }),
+    }),
+
   setToken: (token) => localStorage.setItem("orbit_token", token),
   clearToken: () => localStorage.removeItem("orbit_token"),
   getToken,
